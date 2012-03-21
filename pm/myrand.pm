@@ -1,4 +1,4 @@
-﻿package myrand;
+package myrand;
 require Exporter;
 use strict;
 use warnings;
