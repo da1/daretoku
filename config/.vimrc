@@ -5,6 +5,7 @@ colorscheme darkblue
 
 set number
 set tabstop=4
+set shiftwidth=4
 set expandtab
 
 "不可視文字の表示
@@ -41,3 +42,9 @@ autocmd FileType scheme setlocal autoindent
 "文字コード自動識別
 set encoding=utf-8
 set fileencodings=euc_jp,utf-8
+
+"ファイルタイプによるシンタックス割り当て
+augroup filetypedetect
+    au! BufRead,BufNewFile *.t setfiletype perl
+augroup END
+
