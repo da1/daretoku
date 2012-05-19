@@ -1,7 +1,11 @@
-source /etc/vimrc
+if filereadable("/etc/vimrc")
+    source /etc/vimrc
+elseif filereadable("/etc/vim/vimrc")
+    source /etc/vim/vimrc
+endif
 
 "色設定
-colorscheme darkblue
+colorscheme elflord 
 
 set number
 set tabstop=4
