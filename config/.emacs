@@ -1,3 +1,5 @@
+(show-paren-mode t)
+
 (setq scheme-program-name "gosh")
 (require 'cmuscheme)
 
