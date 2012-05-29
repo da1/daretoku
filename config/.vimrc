@@ -45,7 +45,7 @@ autocmd FileType scheme setlocal autoindent
 
 "文字コード自動識別
 set encoding=utf-8
-set fileencodings=euc_jp,utf-8
+set fileencodings=utf-8,euc_jp
 
 "ファイルタイプによるシンタックス割り当て
 augroup filetypedetect
