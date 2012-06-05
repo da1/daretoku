@@ -52,3 +52,8 @@ augroup filetypedetect
     au! BufRead,BufNewFile *.t setfiletype perl
 augroup END
 
+noremap fg :call Search_pm('vne')<Enter>
+noremap ff :call Search_pm('e')<Enter>
+noremap fd :call Search_pm('sp')<Enter>
+noremap ft :call Search_pm('tabe')<Enter>
+
