@@ -62,10 +62,15 @@ endfunction
 command! CheckCode call _CheckPerlCode()
 autocmd BufWrite *.pl, *.pm, *.t :CheckCode
 
+"===== NeoBundle =====
+"http://vim-users.jp/2011/10/hack238/
+
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle/'))
 endif
+
+filetype off
 
 NeoBundle 'git://github.com/Shougo/echodoc.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache.git'
@@ -78,4 +83,6 @@ NeoBundle 'git://github.com/Shougo/vinarise.git'
 NeoBundle 'git://github.com/Shougo/vimproc.git'
 NeoBundle 'git://github.com/eagletmt/ghcmod-vim.git'
 
-filetype plugin indent on
+filetype on
+
+"=====================
