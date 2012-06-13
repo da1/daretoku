@@ -57,7 +57,7 @@ noremap ft :call Search_pm('tabe')<Enter>
 nnoremap <SPACE>c :! perl -wc -Ilib -It/inc %<ENTER>
 
 function! _CheckPerlCode()
-    exe ":! perl /home/bkapps/local/bin/async_syntax_checker.pl %"
+    exe ":! perl $HOME/local/bin/async_syntax_checker.pl %"
 endfunction
 command! CheckCode call _CheckPerlCode()
 autocmd BufWrite *.pl, *.pm, *.t :CheckCode
