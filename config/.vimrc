@@ -62,6 +62,10 @@ endfunction
 command! CheckCode call _CheckPerlCode()
 autocmd BufWrite *.pl, *.pm, *.t :CheckCode
 
+"
+noremap <C-t> :call LoadTest('bel vne')<ENTER>
+noremap <C-l> :call LoadTest('bel vne', 'directory')<ENTER>
+
 "===== NeoBundle =====
 "http://vim-users.jp/2011/10/hack238/
 
