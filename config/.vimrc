@@ -79,10 +79,13 @@ filetype off
 NeoBundle 'git://github.com/Shougo/echodoc.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+"http://d.hatena.ne.jp/s_yamaz/20110108/1294493899
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
 NeoBundle 'git://github.com/Shougo/vim-vcs.git'
+"http://d.hatena.ne.jp/h1mesuke/20100611/p1
 NeoBundle 'git://github.com/Shougo/vimfiler.git'
 NeoBundle 'git://github.com/Shougo/vimshell.git'
+"http://d.hatena.ne.jp/alwei/20120220/1329756198
 NeoBundle 'git://github.com/Shougo/vinarise.git'
 NeoBundle 'git://github.com/Shougo/vimproc.git'
 NeoBundle 'git://github.com/eagletmt/ghcmod-vim.git'
