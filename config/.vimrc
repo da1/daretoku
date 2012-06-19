@@ -45,6 +45,7 @@ set fileencodings=utf-8,euc_jp
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_max_list = 10
+let g:neocomplcache_dictionary_filetype_lists = {'perl' : $HOME . '/.vim/dict/perl.dict'}
 
 "ファイルタイプによるシンタックス割り当て
 autocmd BufRead, BufNewFile *.t setfiletype=perl
@@ -66,8 +67,19 @@ autocmd BufWrite *.pl, *.pm, *.t :CheckCode
 noremap <C-t> :call LoadTest('bel vne')<ENTER>
 noremap <C-l> :call LoadTest('bel vne', 'directory')<ENTER>
 
+"===== unite.vim =====
+let g:unite_enable_start_insert = 1 "入力モードで開始する
+let g:unite_enable_split_vertically = 1 "縦分割で開く
+"unite prefix key
+"unite mappings
+nnoremap ,f :<C-u>Unite file -completion<CR>
+nnoremap ,b :<C-u>Unite buffer -completion<CR>
+nnoremap ,h :<C-u>Unite file_mru -completion<CR>
+
 "===== NeoBundle =====
 "http://vim-users.jp/2011/10/hack238/
+":NeoBundleInstall
+":NeoBundleInstall!
 
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -89,6 +101,7 @@ NeoBundle 'git://github.com/Shougo/vimshell.git'
 NeoBundle 'git://github.com/Shougo/vinarise.git'
 NeoBundle 'git://github.com/Shougo/vimproc.git'
 NeoBundle 'git://github.com/eagletmt/ghcmod-vim.git'
+NeoBundle 'Align'
 
 filetype on
 
