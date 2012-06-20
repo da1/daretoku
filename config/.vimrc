@@ -100,8 +100,17 @@ NeoBundle 'git://github.com/Shougo/vimshell.git'
 "http://d.hatena.ne.jp/alwei/20120220/1329756198
 NeoBundle 'git://github.com/Shougo/vinarise.git'
 NeoBundle 'git://github.com/Shougo/vimproc.git'
-NeoBundle 'git://github.com/eagletmt/ghcmod-vim.git'
 NeoBundle 'Align'
+NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
+NeoBundle 'git://github.com/tpope/vim-surround.git'
+
+"git
+NeoBundle 'git://github.com/tpope/vim-fugitive.git'
+NeoBundle 'git://github.com/gregsexton/gitv.git'
+NeoBundle 'git://github.com/vim-scripts/extradite.vim.git'
+
+"haskell
+NeoBundle 'git://github.com/eagletmt/ghcmod-vim.git'
 
 filetype on
 
