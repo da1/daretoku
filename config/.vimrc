@@ -57,11 +57,9 @@ noremap ft :call Search_pm('tabe')<Enter>
 
 nnoremap <SPACE>c :! perl -wc -Ilib -It/inc %<ENTER>
 
-function! _CheckPerlCode()
-    exe ":! perl $HOME/local/bin/async_syntax_checker.pl %"
-endfunction
-command! CheckCode call _CheckPerlCode()
-autocmd BufWrite *.pl, *.pm, *.t :CheckCode
+"===== syntastic =====
+let g:syntastic_auto_loc_list=1
+let g:syntastic_enable_signs=1
 
 "
 noremap <C-t> :call LoadTest('bel vne')<ENTER>
@@ -102,7 +100,9 @@ NeoBundle 'git://github.com/Shougo/vinarise.git'
 NeoBundle 'git://github.com/Shougo/vimproc.git'
 NeoBundle 'Align'
 NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
+"https://github.com/tpope/vim-surround
 NeoBundle 'git://github.com/tpope/vim-surround.git'
+NeoBundle 'git://github.com/scrooloose/syntastic.git'
 
 "git
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
