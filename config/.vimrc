@@ -38,6 +38,9 @@ noremap <C-w>j <C-w><DOWN>
 noremap <C-w>k <C-w><UP>
 noremap <C-w>l <C-w><RIGHT>
 
+noremap <C-a> ^
+noremap <C-e> $
+
 "文字コード自動識別
 set encoding=utf-8
 set fileencodings=utf-8,euc_jp
