@@ -114,6 +114,7 @@ NeoBundle 'git://github.com/vim-scripts/extradite.vim.git'
 
 "haskell
 NeoBundle 'git://github.com/eagletmt/ghcmod-vim.git'
+NeoBundle 'git://github.com/ujihisa/neco-hgc.git'
 
 filetype on
 
