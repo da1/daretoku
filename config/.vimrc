@@ -64,6 +64,10 @@ nnoremap <SPACE>c :! perl -wc -Ilib -It/inc %<ENTER>
 let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
 
+if has('vim_starting')
+    let $PERL5LIB='./lib:./t:./t/inc:'.expand('$PERL5LIB')
+endif
+
 "
 noremap <C-t> :call LoadTest('bel vne')<ENTER>
 noremap <C-l> :call LoadTest('bel vne', 'directory')<ENTER>
@@ -76,6 +80,17 @@ let g:unite_enable_split_vertically = 1 "縦分割で開く
 nnoremap ,f :<C-u>Unite file -completion<CR>
 nnoremap ,b :<C-u>Unite buffer -completion<CR>
 nnoremap ,h :<C-u>Unite file_mru -completion<CR>
+
+" ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
 
 "===== NeoBundle =====
 "http://vim-users.jp/2011/10/hack238/
@@ -106,6 +121,7 @@ NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
 "https://github.com/tpope/vim-surround
 NeoBundle 'git://github.com/tpope/vim-surround.git'
 NeoBundle 'git://github.com/scrooloose/syntastic.git'
+NeoBundle 'git://github.com/thinca/vim-ref.git'
 
 "git
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
