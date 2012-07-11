@@ -22,15 +22,16 @@ set showmatch
 set matchtime=0
 set autoindent
 
-"ctrl-c を ESCに置き換え
-"ctrl-cとESCは挙動が違う 以下URL参照
-"http://d.hatena.ne.jp/yuta84q/20101216/1292508997
-inoremap <C-c> <ESC>
-
 "コメント行で改行するとコメントを自動挿入する機能をOFF
 autocmd FileType * setlocal formatoptions=cq
 "編集中のファイルのステータスを常時表示
 set laststatus=2
+
+"=== keybind ===
+"ctrl-c を ESCに置き換え
+"ctrl-cとESCは挙動が違う 以下URL参照
+"http://d.hatena.ne.jp/yuta84q/20101216/1292508997
+inoremap <C-c> <ESC>
 
 "バッファの移動
 noremap <C-w>h <C-w><LEFT>
@@ -38,8 +39,12 @@ noremap <C-w>j <C-w><DOWN>
 noremap <C-w>k <C-w><UP>
 noremap <C-w>l <C-w><RIGHT>
 
+"行頭、行末移動
 noremap <C-a> ^
 noremap <C-e> $
+
+noremap <C-p> <C-b>
+"===============
 
 "文字コード自動識別
 set encoding=utf-8
