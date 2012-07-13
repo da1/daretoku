@@ -97,6 +97,9 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split
 au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
 au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
 
+" for operator replace
+map R <Plug>(operator-replace)
+
 "===== NeoBundle =====
 "http://vim-users.jp/2011/10/hack238/
 ":NeoBundleInstall
@@ -127,6 +130,8 @@ NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
 NeoBundle 'git://github.com/tpope/vim-surround.git'
 NeoBundle 'git://github.com/scrooloose/syntastic.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
+NeoBundle 'git://github.com/kana/vim-operator-user.git'
+NeoBundle 'git://github.com/kana/vim-operator-replace.git'
 
 "git
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
