@@ -156,12 +156,45 @@
     ;; describe-bindingsをAnythingに置き換える
     (descbinds-anything-install)))
 
+;; color-moccurの設定
+(when (require 'color-moccur nil t)
+  ;; M-oにoccur-by-moccurを割り当て
+  (define-key global-map (kbd "M-o") 'occur-by-moccur)
+  ;; スペース区切りでAND検索
+  (setq moccur-split-word t)
+  ;; ディレクトリ検索の時除外するファイル
+  (add-to-list 'dmoccur-exclusion-mask "#.+#$")
+  ;; Migemoを利用できる環境ならMigemoを使う
+  (when (and (executable-find "cmigemo")
+	     (require 'migemo nil t))
+    (setq moccur-use-migemo t)))
+
 ;; auto-completeの設定
 (when (require 'auto-complete-config nil t)
   (add-to-list 'ac-dictionary-directories
 	       "~/.emacs.d/elisp/ac-dict")
   (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
   (ac-config-default))
+
+;; undohistの設定
+;; M-x install-elisp RET http://cx4a.org/pub/undohist.el
+(when (require 'undohist nil t)
+  (undohist-initialize))
+
+;; undo-treeの設定
+;; M-x package-install RET undo-tree RET
+(when (require 'undo-tree nil t)
+  (global-undo-tree-mode))
+
+;; point-undoの設定
+;; M-x auto-install-from-emacswiki RET point-undo.el RET
+(when (require 'point-undo nil t)
+  (define-key global-map [f5] 'point-undo)
+  (define-key global-map [f6] 'point-redo)
+  ;; key-bind
+  (define-key global-map (kbd "M-[") 'point-undo)
+  (define-key global-map (kbd "M-]") 'point-redo)
+  )
 
 ;; scheme 
 (add-hook 'inferior-scheme-mode-hook '(lambda()

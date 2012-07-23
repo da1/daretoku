@@ -100,6 +100,14 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vspli
 " for operator replace
 map R <Plug>(operator-replace)
 
+"===== VimShell =====
+",is: シェルを起動
+nnoremap <silent> ,is :VimShell<CR>
+",iv: 画面を縦分割してシェルを起動
+nnoremap <silent> ,iv :vsplit<CR>:VimShell<CR>
+",i: 画面を縦分割してシェルを起動
+nnoremap <silent> ,iv :vsplit<CR>:VimShell<CR>
+
 "===== NeoBundle =====
 "http://vim-users.jp/2011/10/hack238/
 ":NeoBundleInstall
