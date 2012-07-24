@@ -56,7 +56,8 @@ let g:neocomplcache_max_list = 10
 let g:neocomplcache_dictionary_filetype_lists = {'perl' : $HOME . '/.vim/dict/perl.dict'}
 
 "ファイルタイプによるシンタックス割り当て
-autocmd BufRead, BufNewFile *.t setfiletype=perl
+"autocmd BufRead, BufNewFile *.t setfiletype=perl
+autocmd FileType *.t setfiletype=perl
 
 noremap fg :call Search_pm('vne')<Enter>
 noremap ff :call Search_pm('e')<Enter>
@@ -73,7 +74,7 @@ if has('vim_starting')
     let $PERL5LIB='./lib:./t:./t/inc:'.expand('$PERL5LIB')
 endif
 
-"
+"===== LoadTest =====
 noremap <C-t> :call LoadTest('bel vne')<ENTER>
 noremap <C-l> :call LoadTest('bel vne', 'directory')<ENTER>
 
@@ -96,16 +97,20 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split
 " ウィンドウを縦に分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
 au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+" 新しいタブで開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-T> unite#do_action('tabopen')
+au FileType unite inoremap <silent> <buffer> <expr> <C-T> unite#do_action('tabopen')
 
-" for operator replace
+"===== fugative =====
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+"===== operator replace =====
 map R <Plug>(operator-replace)
 
 "===== VimShell =====
 ",is: シェルを起動
 nnoremap <silent> ,is :VimShell<CR>
 ",iv: 画面を縦分割してシェルを起動
-nnoremap <silent> ,iv :vsplit<CR>:VimShell<CR>
-",i: 画面を縦分割してシェルを起動
 nnoremap <silent> ,iv :vsplit<CR>:VimShell<CR>
 
 "===== NeoBundle =====
