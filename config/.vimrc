@@ -4,6 +4,10 @@ elseif filereadable("/etc/vim/vimrc")
     source /etc/vim/vimrc
 endif
 
+if filereadable(expand('$HOME/.vimrc.local'))
+    source $HOME/.vimrc.local
+endif
+
 "色設定
 colorscheme elflord 
 
