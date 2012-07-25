@@ -149,6 +149,7 @@ NeoBundle 'git://github.com/scrooloose/syntastic.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/kana/vim-operator-user.git'
 NeoBundle 'git://github.com/kana/vim-operator-replace.git'
+NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
 
 "git
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
@@ -157,7 +158,7 @@ NeoBundle 'git://github.com/vim-scripts/extradite.vim.git'
 
 "haskell
 NeoBundle 'git://github.com/eagletmt/ghcmod-vim.git'
-NeoBundle 'git://github.com/ujihisa/neco-hgc.git'
+NeoBundle 'git://github.com/ujihisa/neco-ghc.git'
 
 filetype on
 
