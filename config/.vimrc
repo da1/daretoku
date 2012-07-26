@@ -47,7 +47,6 @@ noremap <C-w>l <C-w><RIGHT>
 noremap <C-a> ^
 noremap <C-e> $
 
-noremap <C-p> <C-b>
 "===============
 
 "文字コード自動識別
