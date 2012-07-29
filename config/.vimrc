@@ -8,9 +8,6 @@ if filereadable(expand('$HOME/.vimrc.local'))
     source $HOME/.vimrc.local
 endif
 
-"色設定
-colorscheme elflord 
-
 set number
 set tabstop=4
 set shiftwidth=4
@@ -19,7 +16,17 @@ set expandtab
 set nocompatible
 
 "不可視文字の表示
-set list
+set list listchars=tab:^_,trail:_
+"全角スペースをハイライト
+scriptencoding utf-8
+augroup highlightIdegraphicSpace
+    autocmd!
+    autocmd ColorScheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+    autocmd VimEnter,WinEnter * match IdeographicSpace /　/
+augroup END
+"色設定
+colorscheme elflord
+
 "対応するカッコを表示
 set showmatch
 "カーソルは対応するカッコに飛ばない
@@ -31,7 +38,14 @@ autocmd FileType * setlocal formatoptions=cq
 "編集中のファイルのステータスを常時表示
 set laststatus=2
 
-"=== keybind ===
+"文字コード自動識別
+set encoding=utf-8
+set fileencodings=utf-8,euc_jp
+
+".viminfo
+set viminfo='1000,<500
+
+"==================== keybind ====================
 "ctrl-c を ESCに置き換え
 "ctrl-cとESCは挙動が違う 以下URL参照
 "http://d.hatena.ne.jp/yuta84q/20101216/1292508997
@@ -46,20 +60,34 @@ noremap <C-w>l <C-w><RIGHT>
 "行頭、行末移動
 noremap <C-a> ^
 noremap <C-e> $
+noremap <C-i> <C-a>
 
-"===============
+"一時ファイルを開く
+command! Tmp :edit `=tempname()`
 
-"文字コード自動識別
-set encoding=utf-8
-set fileencodings=utf-8,euc_jp
+"ヤンクした文字列とカーソル位置の単語を置換する
+nnoremap <silent> cy ce<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+vnoremap <silent> cy c<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+"カーソルが単語内のどこにあってもヤンクした文字列と置換する
+nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 
-" neocomplcache
+"<C-c> 2回押しで，検索ハイライトを消去
+nnoremap <C-c><C-c> :nohlsearch<CR>
+
+"==================== showmarks.vim ====================
+let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+"==================== neocomplcache ====================
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_max_list = 10
 let g:neocomplcache_dictionary_filetype_lists = {'perl' : $HOME . '/.vim/dict/perl.dict'}
+"$ wget https://raw.github.com/Cside/dotfiles/master/.vim/dict/perl.dict
+
+"$ mkdir ~/.vim/snippets
+"$ cd ~/.vim/snippets
+"$ wget https://raw.github.com/gist/2146105/464170751812997fc3b655cb547e2b5a929e9eb6/perl.snip
 
 "ファイルタイプによるシンタックス割り当て
-"autocmd BufRead, BufNewFile *.t setfiletype=perl
 autocmd FileType *.t setfiletype=perl
 
 noremap fg :call Search_pm('vne')<Enter>
@@ -69,7 +97,7 @@ noremap ft :call Search_pm('tabe')<Enter>
 
 nnoremap <SPACE>c :! perl -wc -Ilib -It/inc %<ENTER>
 
-"===== syntastic =====
+"==================== syntastic ====================
 let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
 
@@ -77,11 +105,11 @@ if has('vim_starting')
     let $PERL5LIB='./lib:./t:./t/inc:'.expand('$PERL5LIB')
 endif
 
-"===== LoadTest =====
+"==================== LoadTest ====================
 noremap <C-t> :call LoadTest('bel vne')<ENTER>
 noremap <C-l> :call LoadTest('bel vne', 'directory')<ENTER>
 
-"===== unite.vim =====
+"==================== unite.vim ====================
 let g:unite_enable_start_insert = 1 "入力モードで開始する
 let g:unite_enable_split_vertically = 1 "縦分割で開く
 "unite prefix key
@@ -104,19 +132,53 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <expr> <C-T> unite#do_action('tabopen')
 au FileType unite inoremap <silent> <buffer> <expr> <C-T> unite#do_action('tabopen')
 
-"===== fugative =====
+"==================== vimfiler ====================
+let g:vimfiler_as_default_explorer=1
+
+"==================== fugative ====================
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-"===== operator replace =====
+"==================== operator replace ====================
 map R <Plug>(operator-replace)
 
-"===== VimShell =====
+"==================== VimShell ====================
 ",is: シェルを起動
 nnoremap <silent> ,is :VimShell<CR>
 ",iv: 画面を縦分割してシェルを起動
 nnoremap <silent> ,iv :vsplit<CR>:VimShell<CR>
 
-"===== NeoBundle =====
+"==================== YankRing ====================
+let g:yankring_history_dir = expand('$HOME')
+let g:yankring_history_file = '.yankring_history'
+
+"==================== indent-guides ====================
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent = 30
+let g:indent_guides_guide_size = 1
+
+"==================== vim-funlib ====================
+":put! =Random(0,100)
+function! Random(a, b)
+    return random#randint(a:a, a:b)
+endfunction
+
+function! MD5(data)
+    return hashlib#md5(a:data)
+endfunction
+
+function! Sha1(data)
+    return hashlib#sha1(a:data)
+endfunction
+
+function! Sha256(data)
+    return hashlib#sha256(a:data)
+endfunction
+
+"==================== toggle ====================
+"+ で切り替え
+let g:toggle_pairs = {'and':'or','or':'and','if':'elsif','elsif':'else','else':'if'}
+
+"==================== NeoBundle ====================
 "http://vim-users.jp/2011/10/hack238/
 ":NeoBundleInstall
 ":NeoBundleInstall!
@@ -149,6 +211,13 @@ NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/kana/vim-operator-user.git'
 NeoBundle 'git://github.com/kana/vim-operator-replace.git'
 NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
+NeoBundle 'git://github.com/thinca/vim-visualstar.git'
+NeoBundle 'git://github.com/nathanaelkane/vim-indent-guides.git'
+NeoBundle 'git://github.com/ynkdir/vim-funlib.git'
+NeoBundle 'git://github.com/taku-o/vim-toggle.git'
+
+"HTML
+NeoBundle 'git://github.com/mattn/zencoding-vim.git'
 
 "git
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
@@ -161,4 +230,4 @@ NeoBundle 'git://github.com/ujihisa/neco-ghc.git'
 
 filetype on
 
-"=====================
+"============================================================
