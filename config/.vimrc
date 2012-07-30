@@ -54,6 +54,8 @@ autocmd BufNewFile,BufRead *.t set filetype=perl
 "http://d.hatena.ne.jp/yuta84q/20101216/1292508997
 inoremap <C-c> <ESC>
 
+imap <C-m> <enter>
+
 "バッファの移動
 noremap <C-w>h <C-w><LEFT>
 noremap <C-w>j <C-w><DOWN>
