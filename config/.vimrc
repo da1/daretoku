@@ -45,6 +45,9 @@ set fileencodings=utf-8,euc_jp
 ".viminfo
 set viminfo='1000,<500
 
+"ファイルタイプによるシンタックス割り当て
+autocmd BufNewFile,BufRead *.t set filetype=perl
+
 "==================== keybind ====================
 "ctrl-c を ESCに置き換え
 "ctrl-cとESCは挙動が違う 以下URL参照
@@ -74,11 +77,32 @@ nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 "<C-c> 2回押しで，検索ハイライトを消去
 nnoremap <C-c><C-c> :nohlsearch<CR>
 
+nnoremap <SPACE>c :! perl -wc -Ilib -It/inc %<ENTER>
+
+noremap fg :call Search_pm('vne')<Enter>
+noremap ff :call Search_pm('e')<Enter>
+noremap fd :call Search_pm('sp')<Enter>
+noremap ft :call Search_pm('tabe')<Enter>
+
 "==================== showmarks.vim ====================
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 "==================== neocomplcache ====================
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" Use camel case completion.
+
 let g:neocomplcache_max_list = 10
 let g:neocomplcache_dictionary_filetype_lists = {'perl' : $HOME . '/.vim/dict/perl.dict'}
 "$ wget https://raw.github.com/Cside/dotfiles/master/.vim/dict/perl.dict
@@ -87,15 +111,28 @@ let g:neocomplcache_dictionary_filetype_lists = {'perl' : $HOME . '/.vim/dict/pe
 "$ cd ~/.vim/snippets
 "$ wget https://raw.github.com/gist/2146105/464170751812997fc3b655cb547e2b5a929e9eb6/perl.snip
 
-"ファイルタイプによるシンタックス割り当て
-autocmd FileType *.t setfiletype=perl
+let g:neocomplcache_snippets_dir = $HOME . '/.vim/snippets'
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default'    : '',
+    \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
+    \ }
 
-noremap fg :call Search_pm('vne')<Enter>
-noremap ff :call Search_pm('e')<Enter>
-noremap fd :call Search_pm('sp')<Enter>
-noremap ft :call Search_pm('tabe')<Enter>
+let g:neocomplcache_ctags_arguments_list = {
+    \ 'perl' : '-R -h ".pm"'
+    \ }
 
-nnoremap <SPACE>c :! perl -wc -Ilib -It/inc %<ENTER>
+" select with <TAB>
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+  let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+"==================== snippets ====================
+imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
 "==================== syntastic ====================
 let g:syntastic_auto_loc_list=1
@@ -192,6 +229,7 @@ filetype off
 
 NeoBundle 'git://github.com/Shougo/echodoc.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+NeoBundle 'git://github.com/Shougo/neocomplcache-snippets-complete.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 "http://d.hatena.ne.jp/s_yamaz/20110108/1294493899
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
