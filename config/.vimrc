@@ -8,12 +8,12 @@ if filereadable(expand('$HOME/.vimrc.local'))
     source $HOME/.vimrc.local
 endif
 
+"vi互換off
+set nocompatible
 set number
 set tabstop=4
 set shiftwidth=4
 set expandtab
-"vi互換off
-set nocompatible
 
 "不可視文字の表示
 set list listchars=tab:^_,trail:_
@@ -80,11 +80,6 @@ nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 nnoremap <C-c><C-c> :nohlsearch<CR>
 
 nnoremap <SPACE>c :! perl -wc -Ilib -It/inc %<ENTER>
-
-noremap fg :call Search_pm('vne')<Enter>
-noremap ff :call Search_pm('e')<Enter>
-noremap fd :call Search_pm('sp')<Enter>
-noremap ft :call Search_pm('tabe')<Enter>
 
 "==================== showmarks.vim ====================
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -196,8 +191,8 @@ let g:indent_guides_color_change_percent = 30
 let g:indent_guides_guide_size = 1
 
 let g:indent_guides_auto_colors = 0
-hi IndentGuidesOdd ctermbg=gray
-hi IndentGuidesEven ctermbg=gray
+hi IndentGuidesOdd ctermbg=green
+hi IndentGuidesEven ctermbg=green
 
 "==================== vim-funlib ====================
 ":put! =Random(0,100)
@@ -220,6 +215,12 @@ endfunction
 "==================== toggle ====================
 "+ で切り替え
 let g:toggle_pairs = {'and':'or','or':'and','if':'elsif','elsif':'else','else':'if'}
+
+"==================== jump2pm ====================
+noremap fg :call jump2pm('vne')<Enter>
+noremap ff :call jump2pm('e')<Enter>
+noremap fd :call jump2pm('sp')<Enter>
+noremap ft :call jump2pm('tabe')<Enter>
 
 "==================== NeoBundle ====================
 "http://vim-users.jp/2011/10/hack238/
@@ -259,6 +260,8 @@ NeoBundle 'git://github.com/thinca/vim-visualstar.git'
 NeoBundle 'git://github.com/nathanaelkane/vim-indent-guides.git'
 NeoBundle 'git://github.com/ynkdir/vim-funlib.git'
 NeoBundle 'git://github.com/taku-o/vim-toggle.git'
+NeoBundle 'git://github.com/nakatakeshi/jump2pm.vim.git'
+NeoBundle 'git://github.com/mileszs/ack.vim.git'
 
 "HTML
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
