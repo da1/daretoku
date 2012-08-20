@@ -47,6 +47,7 @@ set viminfo='1000,<500
 
 "ファイルタイプによるシンタックス割り当て
 autocmd BufNewFile,BufRead *.t set filetype=perl
+autocmd BufNewFile,BufRead *.scala set filetype=scala
 
 "==================== keybind ====================
 "ctrl-c を ESCに置き換え
@@ -176,10 +177,10 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 map R <Plug>(operator-replace)
 
 "==================== VimShell ====================
-",is: シェルを起動
-nnoremap <silent> ,is :VimShell<CR>
-",iv: 画面を縦分割してシェルを起動
-nnoremap <silent> ,iv :vsplit<CR>:VimShell<CR>
+",vs: シェルを起動
+nnoremap <silent> ,vs :VimShell<CR>
+",vv: 画面を縦分割してシェルを起動
+nnoremap <silent> ,vv :VimShell -split<CR>
 
 "==================== YankRing ====================
 let g:yankring_history_dir = expand('$HOME')
@@ -214,13 +215,16 @@ endfunction
 
 "==================== toggle ====================
 "+ で切り替え
-let g:toggle_pairs = {'and':'or','or':'and','if':'elsif','elsif':'else','else':'if'}
+let g:toggle_pairs = {
+    \ 'and': 'or', 'or': 'and',
+    \ 'if': 'elsif', 'elsif': 'else', 'else': 'if'
+    \ }
 
 "==================== jump2pm ====================
-noremap fg :call jump2pm('vne')<Enter>
-noremap ff :call jump2pm('e')<Enter>
-noremap fd :call jump2pm('sp')<Enter>
-noremap ft :call jump2pm('tabe')<Enter>
+noremap fg :call Jump2pm('vne')<Enter>
+noremap ff :call Jump2pm('e')<Enter>
+noremap fd :call Jump2pm('sp')<Enter>
+noremap ft :call Jump2pm('tabe')<Enter>
 
 "==================== NeoBundle ====================
 "http://vim-users.jp/2011/10/hack238/
