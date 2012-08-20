@@ -226,6 +226,9 @@ noremap ff :call Jump2pm('e')<Enter>
 noremap fd :call Jump2pm('sp')<Enter>
 noremap ft :call Jump2pm('tabe')<Enter>
 
+"==================== ack.vim ====================
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
 "==================== NeoBundle ====================
 "http://vim-users.jp/2011/10/hack238/
 ":NeoBundleInstall
