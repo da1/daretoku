@@ -14,6 +14,9 @@ set number
 set tabstop=4
 set shiftwidth=4
 set expandtab
+"スペルチェッカ
+"http://d.hatena.ne.jp/h1mesuke/20100803/p1
+set spell
 
 "不可視文字の表示
 set list listchars=tab:^_,trail:_
