@@ -152,9 +152,9 @@ let g:unite_enable_start_insert = 1 "入力モードで開始する
 let g:unite_enable_split_vertically = 1 "縦分割で開く
 "unite prefix key
 "unite mappings
-nnoremap ,f :<C-u>Unite file -completion<CR>
-nnoremap ,b :<C-u>Unite buffer -completion<CR>
-nnoremap ,h :<C-u>Unite file_mru -completion<CR>
+nnoremap ,f :<C-u>Unite file<CR>
+nnoremap ,b :<C-u>Unite buffer<CR>
+nnoremap ,h :<C-u>Unite file_mru<CR>
 
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
@@ -272,6 +272,7 @@ NeoBundle 'git://github.com/ynkdir/vim-funlib.git'
 NeoBundle 'git://github.com/taku-o/vim-toggle.git'
 NeoBundle 'git://github.com/nakatakeshi/jump2pm.vim.git'
 NeoBundle 'git://github.com/mileszs/ack.vim.git'
+NeoBundle 'git://github.com/sakuraiyuta/commentout.vim.git'
 
 "HTML
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
