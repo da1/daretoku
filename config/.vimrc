@@ -16,7 +16,7 @@ set shiftwidth=4
 set expandtab
 "スペルチェッカ
 "http://d.hatena.ne.jp/h1mesuke/20100803/p1
-set spell
+"set spell
 
 "不可視文字の表示
 set list listchars=tab:^_,trail:_
@@ -28,7 +28,7 @@ augroup highlightIdegraphicSpace
     autocmd VimEnter,WinEnter * match IdeographicSpace /　/
 augroup END
 "色設定
-colorscheme elflord
+colorscheme peachpuff
 
 "対応するカッコを表示
 set showmatch
@@ -273,6 +273,7 @@ NeoBundle 'git://github.com/taku-o/vim-toggle.git'
 NeoBundle 'git://github.com/nakatakeshi/jump2pm.vim.git'
 NeoBundle 'git://github.com/mileszs/ack.vim.git'
 NeoBundle 'git://github.com/sakuraiyuta/commentout.vim.git'
+NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
 
 "HTML
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
