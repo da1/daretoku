@@ -17,6 +17,8 @@ set expandtab
 "スペルチェッカ
 "http://d.hatena.ne.jp/h1mesuke/20100803/p1
 "set spell
+"ベル
+set noerrorbells
 
 "不可視文字の表示
 set list listchars=tab:^_,trail:_
