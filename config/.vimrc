@@ -248,7 +248,7 @@ filetype off
 
 NeoBundle 'git://github.com/Shougo/echodoc.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-NeoBundle 'git://github.com/Shougo/neocomplcache-snippets-complete.git'
+NeoBundle 'git://github.com/Shougo/neosnippet.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 "http://d.hatena.ne.jp/s_yamaz/20110108/1294493899
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
@@ -263,6 +263,7 @@ NeoBundle 'Align'
 NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
 "https://github.com/tpope/vim-surround
 NeoBundle 'git://github.com/tpope/vim-surround.git'
+NeoBundle 'git://github.com/tpope/vim-pathogen.git'
 NeoBundle 'git://github.com/scrooloose/syntastic.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/kana/vim-operator-user.git'
