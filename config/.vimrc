@@ -234,6 +234,17 @@ noremap ft :call Jump2pm('tabe')<Enter>
 "==================== ack.vim ====================
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
+"==================== easymotion.vim ====================
+" ホームポジションに近いキーを使う
+let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
+" 「'」 + 何かにマッピング
+let g:EasyMotion_leader_key="'"
+" 1 ストローク選択を優先する
+let g:EasyMotion_grouping=1
+" カラー設定変更
+hi EasyMotionTarget ctermbg=none ctermfg=red
+hi EasyMotionShade  ctermbg=none ctermfg=blue
+
 "==================== NeoBundle ====================
 "http://vim-users.jp/2011/10/hack238/
 ":NeoBundleInstall
@@ -277,6 +288,7 @@ NeoBundle 'git://github.com/nakatakeshi/jump2pm.vim.git'
 NeoBundle 'git://github.com/mileszs/ack.vim.git'
 NeoBundle 'git://github.com/sakuraiyuta/commentout.vim.git'
 NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
+NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
 
 "HTML
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
