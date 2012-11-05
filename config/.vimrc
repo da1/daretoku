@@ -289,6 +289,7 @@ NeoBundle 'git://github.com/mileszs/ack.vim.git'
 NeoBundle 'git://github.com/sakuraiyuta/commentout.vim.git'
 NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
 NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
+NeoBundle 'git://github.com/mattn/webapi-vim.git'
 
 "HTML
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
