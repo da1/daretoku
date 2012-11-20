@@ -238,7 +238,7 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 " ホームポジションに近いキーを使う
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
 " 「'」 + 何かにマッピング
-let g:EasyMotion_leader_key="'"
+let g:EasyMotion_leader_key="<Space><Space>"
 " 1 ストローク選択を優先する
 let g:EasyMotion_grouping=1
 " カラー設定変更
@@ -250,16 +250,15 @@ hi EasyMotionShade  ctermbg=none ctermfg=blue
 ":NeoBundleInstall
 ":NeoBundleInstall!
 
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/bundle/'))
-endif
+"if has('vim_starting')
+"    set runtimepath+=~/.vim/bundle/neobundle.vim/
+"    call neobundle#rc(expand('~/.vim/bundle/'))
+"endif
 
 filetype off
 
 NeoBundle 'git://github.com/Shougo/echodoc.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-NeoBundle 'git://github.com/Shougo/neosnippet.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 "http://d.hatena.ne.jp/s_yamaz/20110108/1294493899
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
@@ -291,6 +290,13 @@ NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
 NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
 NeoBundle 'git://github.com/mattn/webapi-vim.git'
 
+"TextObj
+NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
+NeoBundle 'git://github.com/kana/vim-textobj-user.git'
+
+"snippet
+NeoBundle 'git://github.com/Shougo/neosnippet.git'
+
 "HTML
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
 
@@ -302,6 +308,7 @@ NeoBundle 'git://github.com/vim-scripts/extradite.vim.git'
 "haskell
 NeoBundle 'git://github.com/eagletmt/ghcmod-vim.git'
 NeoBundle 'git://github.com/ujihisa/neco-ghc.git'
+
 
 filetype on
 
