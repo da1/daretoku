@@ -4,6 +4,88 @@ elseif filereadable("/etc/vim/vimrc")
     source /etc/vim/vimrc
 endif
 
+"==================== NeoBundle ====================
+set nocompatible               " Be iMproved
+filetype off                   " Required!
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+NeoBundle 'git://github.com/Shougo/unite.vim.git'
+NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+NeoBundle 'git://github.com/Shougo/vimshell.git'
+NeoBundle 'git://github.com/Shougo/vimfiler.git'
+NeoBundle 'git://github.com/Shougo/vimproc.git'
+
+NeoBundle 'git://github.com/Shougo/echodoc.git'
+NeoBundle 'git://github.com/vim-scripts/Align.git'
+NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
+NeoBundle 'git://github.com/tpope/vim-surround.git'
+NeoBundle 'git://github.com/tpope/vim-pathogen.git'
+NeoBundle 'git://github.com/scrooloose/syntastic.git'
+NeoBundle 'git://github.com/thinca/vim-ref.git'
+NeoBundle 'git://github.com/kana/vim-operator-user.git'
+NeoBundle 'git://github.com/kana/vim-operator-replace.git'
+NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
+NeoBundle 'git://github.com/thinca/vim-visualstar.git'
+NeoBundle 'git://github.com/nathanaelkane/vim-indent-guides.git'
+NeoBundle 'git://github.com/ynkdir/vim-funlib.git'
+NeoBundle 'git://github.com/taku-o/vim-toggle.git'
+NeoBundle 'git://github.com/mileszs/ack.vim.git'
+NeoBundle 'git://github.com/sakuraiyuta/commentout.vim.git'
+NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
+NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
+NeoBundle 'git://github.com/mattn/webapi-vim.git'
+
+"TextObj
+NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
+NeoBundle 'git://github.com/kana/vim-textobj-user.git'
+
+"snippet
+NeoBundle 'git://github.com/Shougo/neosnippet.git'
+NeoBundle 'git://github.com/honza/snipmate-snippets.git'
+
+"HTML
+NeoBundle 'git://github.com/mattn/zencoding-vim.git'
+
+"Perl
+NeoBundle 'git://github.com/nakatakeshi/jump2pm.vim.git'
+
+"haskell
+NeoBundle 'git://github.com/eagletmt/ghcmod-vim.git'
+NeoBundle 'git://github.com/ujihisa/neco-ghc.git'
+
+"git
+NeoBundle 'git://github.com/Shougo/vim-vcs.git'
+NeoBundle 'git://github.com/tpope/vim-fugitive.git'
+NeoBundle 'git://github.com/gregsexton/gitv.git'
+NeoBundle 'git://github.com/vim-scripts/extradite.vim.git'
+
+"binary
+"http://d.hatena.ne.jp/alwei/20120220/1329756198
+NeoBundle 'git://github.com/Shougo/vinarise.git'
+
+filetype plugin indent on     " Required!
+"
+" Brief help
+" :NeoBundleList          - list configured bundles
+" :NeoBundleInstall(!)    - install(update) bundles
+" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+
+" Installation check.
+if neobundle#exists_not_installed_bundles()
+  echomsg 'Not installed bundles : ' .
+        \ string(neobundle#get_not_installed_bundle_names())
+  echomsg 'Please execute ":NeoBundleInstall" command.'
+  "finish
+endif
+
+"============================================================
+
 if filereadable(expand('$HOME/.vimrc.local'))
     source $HOME/.vimrc.local
 endif
@@ -91,24 +173,25 @@ nnoremap <SPACE>c :! perl -wc -Ilib -It/inc %<ENTER>
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 "==================== neocomplcache ====================
+"Note: This option must set it in .vimrc(_vimrc). NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-" Use camel case completion.
 
 let g:neocomplcache_max_list = 10
-let g:neocomplcache_dictionary_filetype_lists = {'perl' : $HOME . '/.vim/dict/perl.dict'}
-"$ wget https://raw.github.com/Cside/dotfiles/master/.vim/dict/perl.dict
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
 
 " Define keyword, for minor languages
 if !exists('g:neocomplcache_keyword_patterns')
@@ -120,6 +203,22 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
 " Enable omni completion. Not required if they are already set elsewhere in
 " .vimrc
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -128,33 +227,19 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" Enable heavy omni completion, which require computational power and may
-" stall the vim. 
+" Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-"$ mkdir ~/.vim/snippets
-"$ cd ~/.vim/snippets
-"$ wget https://raw.github.com/gist/2146105/464170751812997fc3b655cb547e2b5a929e9eb6/perl.snip
-
-"let g:neocomplcache_snippets_dir = $HOME . '/.vim/snippets'
-"let g:neocomplcache_dictionary_filetype_lists = {
-"    \ 'default'    : '',
-"    \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
-"    \ }
-
-"let g:neocomplcache_ctags_arguments_list = {
-"    \ 'perl' : '-R -h ".pm"'
-"    \ }
-
-" select with <TAB>
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 "==================== neosnippets ====================
 " Plugin key-mappings.
@@ -169,8 +254,6 @@ smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" 
 if has('conceal')
     set conceallevel=2 concealcursor=i
 endif
-"imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
-"smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
 let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
 let g:neosnippet#enable_snipmate_compatibility = 1
@@ -283,74 +366,3 @@ let g:EasyMotion_grouping=1
 hi EasyMotionTarget ctermbg=none ctermfg=red
 hi EasyMotionShade  ctermbg=none ctermfg=blue
 
-"==================== NeoBundle ====================
-"http://vim-users.jp/2011/10/hack238/
-":NeoBundleInstall
-":NeoBundleInstall!
-
-"if has('vim_starting')
-"    set runtimepath+=~/.vim/bundle/neobundle.vim/
-"    call neobundle#rc(expand('~/.vim/bundle/'))
-"endif
-
-filetype off
-
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
-NeoBundle 'git://github.com/Shougo/unite.vim.git'
-NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-NeoBundle 'git://github.com/Shougo/vimshell.git'
-NeoBundle 'git://github.com/Shougo/vimfiler.git'
-NeoBundle 'git://github.com/Shougo/vimproc.git'
-
-NeoBundle 'git://github.com/Shougo/echodoc.git'
-NeoBundle 'git://github.com/vim-scripts/Align.git'
-NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
-NeoBundle 'git://github.com/tpope/vim-surround.git'
-NeoBundle 'git://github.com/tpope/vim-pathogen.git'
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
-NeoBundle 'git://github.com/thinca/vim-ref.git'
-NeoBundle 'git://github.com/kana/vim-operator-user.git'
-NeoBundle 'git://github.com/kana/vim-operator-replace.git'
-NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
-NeoBundle 'git://github.com/thinca/vim-visualstar.git'
-NeoBundle 'git://github.com/nathanaelkane/vim-indent-guides.git'
-NeoBundle 'git://github.com/ynkdir/vim-funlib.git'
-NeoBundle 'git://github.com/taku-o/vim-toggle.git'
-NeoBundle 'git://github.com/mileszs/ack.vim.git'
-NeoBundle 'git://github.com/sakuraiyuta/commentout.vim.git'
-NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
-NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
-NeoBundle 'git://github.com/mattn/webapi-vim.git'
-
-"TextObj
-NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
-NeoBundle 'git://github.com/kana/vim-textobj-user.git'
-
-"snippet
-NeoBundle 'git://github.com/Shougo/neosnippet.git'
-"NeoBundle 'git://github.com/honza/snipmate-snippets.git'
-
-"HTML
-NeoBundle 'git://github.com/mattn/zencoding-vim.git'
-
-"Perl
-NeoBundle 'git://github.com/nakatakeshi/jump2pm.vim.git'
-
-"haskell
-NeoBundle 'git://github.com/eagletmt/ghcmod-vim.git'
-NeoBundle 'git://github.com/ujihisa/neco-ghc.git'
-
-"git
-NeoBundle 'git://github.com/Shougo/vim-vcs.git'
-NeoBundle 'git://github.com/tpope/vim-fugitive.git'
-NeoBundle 'git://github.com/gregsexton/gitv.git'
-NeoBundle 'git://github.com/vim-scripts/extradite.vim.git'
-
-"binary
-"http://d.hatena.ne.jp/alwei/20120220/1329756198
-NeoBundle 'git://github.com/Shougo/vinarise.git'
-
-
-filetype on
-
-"============================================================
