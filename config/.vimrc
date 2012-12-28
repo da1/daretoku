@@ -43,6 +43,7 @@ NeoBundle 'git://github.com/sakuraiyuta/commentout.vim.git'
 NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
 NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
 NeoBundle 'git://github.com/mattn/webapi-vim.git'
+NeoBundle 'git://github.com/thinca/vim-quickrun.git'
 
 "TextObj
 NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
