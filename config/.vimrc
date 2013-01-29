@@ -29,7 +29,7 @@ NeoBundle 'git://github.com/vim-scripts/Align.git'
 NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
 NeoBundle 'git://github.com/tpope/vim-surround.git'
 NeoBundle 'git://github.com/tpope/vim-pathogen.git'
-"NeoBundle 'git://github.com/scrooloose/syntastic.git'
+NeoBundle 'git://github.com/scrooloose/syntastic.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/kana/vim-operator-user.git'
 NeoBundle 'git://github.com/kana/vim-operator-replace.git'
@@ -44,7 +44,6 @@ NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
 NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
 NeoBundle 'git://github.com/mattn/webapi-vim.git'
 NeoBundle 'git://github.com/thinca/vim-quickrun.git'
-NeoBundle 'git://github.com/vim-scripts/errormarker.vim.git'
 
 "TextObj
 NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
@@ -367,4 +366,3 @@ let g:EasyMotion_grouping=1
 " カラー設定変更
 hi EasyMotionTarget ctermbg=none ctermfg=red
 hi EasyMotionShade  ctermbg=none ctermfg=blue
-
