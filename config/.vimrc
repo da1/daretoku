@@ -29,7 +29,7 @@ NeoBundle 'git://github.com/vim-scripts/Align.git'
 NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
 NeoBundle 'git://github.com/tpope/vim-surround.git'
 NeoBundle 'git://github.com/tpope/vim-pathogen.git'
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
+"NeoBundle 'git://github.com/scrooloose/syntastic.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/kana/vim-operator-user.git'
 NeoBundle 'git://github.com/kana/vim-operator-replace.git'
@@ -44,6 +44,7 @@ NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
 NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
 NeoBundle 'git://github.com/mattn/webapi-vim.git'
 NeoBundle 'git://github.com/thinca/vim-quickrun.git'
+NeoBundle 'git://github.com/vim-scripts/errormarker.vim.git'
 
 "TextObj
 NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
@@ -270,10 +271,6 @@ if has('vim_starting')
     let $PERL5LIB='./lib:./t:./t/inc:'.expand('$PERL5LIB')
 endif
 
-"==================== LoadTest ====================
-noremap <C-t> :call LoadTest('bel vne')<ENTER>
-noremap <C-l> :call LoadTest('bel vne', 'directory')<ENTER>
-
 "==================== unite.vim ====================
 let g:unite_enable_start_insert = 1 "入力モードで開始する
 let g:unite_enable_split_vertically = 1 "縦分割で開く
@@ -363,7 +360,7 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 "==================== easymotion.vim ====================
 " ホームポジションに近いキーを使う
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
-" 「'」 + 何かにマッピング
+" 「m」 + 何かにマッピング
 let g:EasyMotion_leader_key="m"
 " 1 ストローク選択を優先する
 let g:EasyMotion_grouping=1

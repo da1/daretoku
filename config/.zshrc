@@ -55,5 +55,6 @@ compinit -u
 alias st="git status"
 alias b="git branch"
 alias cm="git commit"
+alias lg="git log"
 
 alias t="tmux"
