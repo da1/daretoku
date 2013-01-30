@@ -63,6 +63,9 @@ NeoBundle 'git://github.com/nakatakeshi/jump2pm.vim.git'
 NeoBundle 'git://github.com/eagletmt/ghcmod-vim.git'
 NeoBundle 'git://github.com/ujihisa/neco-ghc.git'
 
+"coffee
+NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
+
 "git
 NeoBundle 'git://github.com/Shougo/vim-vcs.git'
 NeoBundle 'git://github.com/tpope/vim-fugitive.git'
@@ -139,6 +142,8 @@ set viminfo='1000,<500
 "ファイルタイプによるシンタックス割り当て
 autocmd BufNewFile,BufRead *.t set filetype=perl
 autocmd BufNewFile,BufRead *.scala set filetype=scala
+autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+autocmd BufNewFile,BufRead *.ts set filetype=typescript
 
 "==================== keybind ====================
 "ctrl-c を ESCに置き換え

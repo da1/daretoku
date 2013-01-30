@@ -58,7 +58,7 @@
 (global-font-lock-mode t)
 
 ;; タブの代わりにスペースを使う
-(setq indent-tabs-mode nil)
+(setq tab-width 4 indent-tabs-mode nil)
 
 ;; 括弧の対応をハイライト
 (setq show-paren-mode t)
