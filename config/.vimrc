@@ -284,6 +284,7 @@ let g:unite_marked_icon = "*"
 nnoremap ,f :<C-u>Unite file<CR>
 nnoremap ,b :<C-u>Unite buffer<CR>
 nnoremap ,h :<C-u>Unite file_mru<CR>
+nnoremap ,d :<C-u>UniteWithBufferDir file<CR>
 
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
