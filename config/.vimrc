@@ -108,7 +108,6 @@ set expandtab
 "set spell
 "ベル
 set noerrorbells
-set paste
 
 "不可視文字の表示
 set list listchars=tab:^_,trail:_
