@@ -58,3 +58,7 @@ alias cm="git commit"
 alias lg="git log"
 
 alias t="tmux"
+
+if which rbenv > /dev/null ; then
+    eval "$(rbenv init -)"
+fi
