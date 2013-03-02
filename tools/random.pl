@@ -13,7 +13,7 @@ $len = $opts{l} if defined $opts{l};
 
 my $rand = String::Random->new;
 my $str = $rand->randregex("[0-9a-zA-Z]{$len}");
-unless(defined $opts{a}){
+if(not defined $opts{a} or $len < 3){
     say $str;
     exit 0;
 }
