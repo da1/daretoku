@@ -60,6 +60,6 @@ alias gg="git grep"
 
 alias t="tmux"
 
-if which rbenv > /dev/null ; then
+if which rbenv >& /dev/null ; then
     eval "$(rbenv init -)"
 fi
